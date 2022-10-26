@@ -1,7 +1,6 @@
 const userService = require('../service/user.service');
 const { createToken } = require('../utils/jwt.utils');
 const { validateBodyLogin } = require('../helpers/validateLogin');
-const getUserService = require('../service/user.service');
 
 const createUser = async (req, res) => {
     const { displayName, email, password, image } = req.body;
@@ -33,7 +32,7 @@ const login = async (req, res) => {
         if (error) return res.status(400).json({ message: 'Some required fields are missing' });
 
         const { email, password } = req.body;
-        const user = await getUserService.getUser({ email });
+        const user = await userService.getUser({ email });
 
         if (!user || user.password !== password) {
           return res.status(400).json({ message: 'Invalid fields' });
