@@ -1,6 +1,18 @@
-const { validateBodyLogin } = require('../helpers/validateLogin');
-const getUserService = require('../service/getUser.service');
+const userService = require('../service/user.service');
 const { createToken } = require('../utils/jwt.utils');
+const { validateBodyLogin } = require('../helpers/validateLogin');
+const getUserService = require('../service/user.service');
+
+const createUser = async (req, res) => {
+    const { displayName, email, password, image } = req.body;
+    const user = await userService.getUser({ email });
+
+    if (user) return res.status(409).json({ message: 'User already registered' });
+
+    const newUser = await userService.createUser(displayName, email, password, image);
+    const token = createToken(newUser.dataValues);
+    return res.status(201).json({ token });
+};
 
 const login = async (req, res) => {
    try { 
@@ -22,7 +34,7 @@ const login = async (req, res) => {
         res.status(500).json({ message: 'Error' });
     }
 };
-
 module.exports = {
+    createUser,
     login,
 };
