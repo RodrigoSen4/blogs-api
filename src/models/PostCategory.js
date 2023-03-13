@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
           models.BlogPost,
           {
             foreignKey: 'postId',
-            as: 'blog-posts',
+            as: 'blog_posts',
             through: PostCategory,
             otherKey: 'categoryId',
           },
