@@ -166,24 +166,6 @@ Foi desenvolvido uma API e um banco de dados para a produção de conteúdo para
 ### Post
 
 <details>
-  <summary><strong>POST /post</strong></summary>
-  </br>
-  • Adiciona um novo blog ao usuário logado e vincula as categorias em suas tabelas no banco de dados.
-  </br>
-  • Valida o token - req.authorization.
-  </br> 
-  • O endpoint deve receber a seguinte estrutura, exemplo:
-  
-  ```json
-  {
-    "title": "Latest updates, August 1st",
-    "content": "The whole text for the blog post goes here in this key",
-    "categoryIds": [1, 2]
-  }
-  ```
-</details>
-
-<details>
   <summary><strong>GET /post</strong></summary>
   </br>
   • Traz todos os blogs post e as categorias do banco de dados.
